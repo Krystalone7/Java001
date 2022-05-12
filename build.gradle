@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+}
+
+group 'com.artyom'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.6.7'
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.6.7'
+    implementation 'org.projectlombok:lombok:1.18.24'
+    testImplementation 'org.springframework.boot:spring-boot-starter:2.6.7'
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.24'
+    implementation group: 'org.postgresql', name: 'postgresql', version: '42.3.3'
+}
+
+test {
+    useJUnitPlatform()
+}
