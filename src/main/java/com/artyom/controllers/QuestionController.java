@@ -49,9 +49,6 @@ public class QuestionController {
         } catch (NullPointerException e){
             return new ResponseDto<>("ERROR", "Question with questionId: " + creationDTO.getQuestionId().toString() + " doesnt exist", null);
         }
-
-
-        //return new ResponseDto<>("ERROR", "Question is not found", null);
     }
 }
 
