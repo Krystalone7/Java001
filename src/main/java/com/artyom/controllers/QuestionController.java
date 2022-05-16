@@ -33,8 +33,9 @@ public class QuestionController {
 
     @PostMapping("/question/check")
     public ResponseDto<AnswerDTO> checkAnswer(@RequestBody AnswerCreationDTO creationDTO) {
+        Question question = null;
         try {
-            Question question = questionService.getQuestionById(creationDTO.getQuestionId());
+            question = questionService.getQuestionById(creationDTO.getQuestionId());
             if (question.getAnswer().equals(creationDTO.getAnswer())) {
                 return new ResponseDto<>("OK", "OK"
                         , new AnswerDTO(creationDTO.getQuestionId()
@@ -48,6 +49,8 @@ public class QuestionController {
             }
         } catch (NullPointerException e){
             return new ResponseDto<>("ERROR", "Question with questionId: " + creationDTO.getQuestionId().toString() + " doesnt exist", null);
+        } catch (Exception e){
+            return new ResponseDto<>("ERROR", "Error with request body", null);
         }
     }
 }
