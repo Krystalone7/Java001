@@ -1,14 +1,14 @@
 package com.artyom.dto;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 public class AnswerCreationDTO {
-    private final Long questionId;
-    private final String answer;
+    private Long questionId;
+    private String answer;
 
-    public AnswerCreationDTO(Long questionId, String answer) {
-        this.questionId = questionId;
-        this.answer = answer;
+    public AnswerCreationDTO() {
     }
 }

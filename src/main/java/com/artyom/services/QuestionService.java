@@ -15,7 +15,8 @@ public class QuestionService {
     }
 
     public Question getRandomQuestion(){
-        Long rand = (long) (Math.random() * repository.count());
+        Long rand = (long) (Math.random() * repository.count() + 1);
+        System.out.println(rand);
         return repository.getById(rand);
     }
 

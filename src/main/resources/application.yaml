@@ -1,4 +1,6 @@
 spring:
+  liquibase:
+    enabled: true
   datasource:
     driver-class-name:
       org.postgresql.Driver
@@ -12,4 +14,4 @@ spring:
         dialect:
           org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-      ddl-auto: create
+      ddl-auto: none

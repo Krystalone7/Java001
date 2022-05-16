@@ -3,6 +3,8 @@ package com.artyom.controllers;
 import com.artyom.dto.*;
 import com.artyom.entities.Question;
 import com.artyom.services.QuestionService;
+import liquibase.pro.packaged.P;
+import liquibase.repackaged.org.apache.commons.lang3.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,18 +33,23 @@ public class QuestionController {
 
     @PostMapping("/question/check")
     public ResponseDto<AnswerDTO> checkAnswer(@RequestBody AnswerCreationDTO creationDTO) {
-        Question question = questionService.getQuestionById(creationDTO.getQuestionId());
-        if (question.getAnswer().equals(creationDTO.getAnswer())) {
-            return new ResponseDto<>("OK", "OK"
-                    , new AnswerDTO(creationDTO.getQuestionId()
-                    , true
-                    , creationDTO.getAnswer()));
-        } else {
-            return new ResponseDto<>("OK", "OK"
-                    , new AnswerDTO(creationDTO.getQuestionId()
-                    , false
-                    , question.getAnswer()));
+        try {
+            Question question = questionService.getQuestionById(creationDTO.getQuestionId());
+            if (question.getAnswer().equals(creationDTO.getAnswer())) {
+                return new ResponseDto<>("OK", "OK"
+                        , new AnswerDTO(creationDTO.getQuestionId()
+                        , true
+                        , question.getAnswer()));
+            } else {
+                return new ResponseDto<>("OK", "OK"
+                        , new AnswerDTO(creationDTO.getQuestionId()
+                        , false
+                        , question.getAnswer()));
+            }
+        } catch (NullPointerException e){
+            return new ResponseDto<>("ERROR", "Question with questionId: " + creationDTO.getQuestionId().toString() + " doesnt exist", null);
         }
+
 
         //return new ResponseDto<>("ERROR", "Question is not found", null);
     }

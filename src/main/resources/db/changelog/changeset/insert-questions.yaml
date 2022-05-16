@@ -1,0 +1,60 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-questions
+      author: Artyom
+      changes:
+        - insert:
+            schemaName: quiz
+            tableName: questions
+            columns:
+              - column:
+                  name: question_text
+                  value: Назовите имя и отчество Тургенева.
+              - column:
+                  name: category_id
+                  value: 1
+              - column:
+                  name: difficulty
+                  value: 200
+              - column:
+                  name: answer
+                  value: Иван Сергеевич
+        - insert:
+            schemaName: quiz
+            tableName: questions
+            columns:
+              - column:
+                  name: question_text
+                  value: Какое по величине ускорение свободного падения(м/с^2)?
+              - column:
+                  name: category_id
+                  value: 2
+              - column:
+                  name: difficulty
+                  value: 100
+              - column:
+                  name: answer
+                  value: 10
+        - insert:
+            schemaName: quiz
+            tableName: questions
+            columns:
+              - column:
+                  name: question_text
+                  value: Жидкий металл?
+              - column:
+                  name: category_id
+                  value: 3
+              - column:
+                  name: difficulty
+                  value: 100
+              - column:
+                  name: answer
+                  value: Ртуть
+
+
+      rollback:
+        - delete:
+            tableName: questions
+            schemaName: quiz
+            where: question_text in ('Назовите имя и отчество Тургенева', 'Жидкий металл?', 'Какое по величине ускорение свободного падения(м/с^2)?')
