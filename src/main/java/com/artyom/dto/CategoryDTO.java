@@ -1,11 +1,13 @@
 package com.artyom.dto;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 public class CategoryDTO {
-    private final Long id;
-    private final String name;
+    private Long id;
+    private String name;
 
     public CategoryDTO(Long id, String name) {
         this.id = id;

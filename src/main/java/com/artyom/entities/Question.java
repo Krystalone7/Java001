@@ -37,4 +37,12 @@ public class Question {
         this.difficulty = difficulty;
         this.answer = answer;
     }
+
+    public Question(Long id, String questionText, Category category, Integer difficulty, String answer) {
+        this.id = id;
+        this.questionText = questionText;
+        this.category = category;
+        this.difficulty = difficulty;
+        this.answer = answer;
+    }
 }

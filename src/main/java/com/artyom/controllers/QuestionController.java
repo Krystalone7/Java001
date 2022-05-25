@@ -3,16 +3,21 @@ package com.artyom.controllers;
 import com.artyom.dto.*;
 import com.artyom.entities.Question;
 import com.artyom.services.QuestionService;
-import liquibase.pro.packaged.P;
-import liquibase.repackaged.org.apache.commons.lang3.ObjectUtils;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import liquibase.pro.packaged.Q;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Optional;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 @RestController
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class QuestionController {
     private final QuestionService questionService;
 
@@ -52,6 +57,29 @@ public class QuestionController {
         } catch (Exception e){
             return new ResponseDto<>("ERROR", "Error with request body", null);
         }
+    }
+    @GetMapping("/api/random")
+    public ResponseDto<QuestionDTO> getRandomQuestionFromApi() throws IOException {
+        try {
+            URL url = new URL("http://jservice.io/api/random");
+            ObjectMapper objectMapper = new ObjectMapper();
+            ArrayList arr =objectMapper.readValue(url, ArrayList.class);
+            LinkedHashMap<String, Object> map =  (LinkedHashMap)(arr.get(0));
+
+            //saving question to database
+            Question question = questionService.saveQuestion(map);
+
+            return new ResponseDto<>("OK", "OK",
+                    new QuestionDTO(
+                            question.getId(),
+                            question.getQuestionText(),
+                            new CategoryDTO(question.getCategory().getId(), question.getCategory().getName()),
+                            question.getDifficulty()));
+        }catch (Exception e){
+            System.out.println("Exception");
+            return new ResponseDto<>("ERROR", "Troubles with the resource", null);
+        }
+
     }
 }
 

@@ -2,17 +2,19 @@ package com.artyom.dto;
 
 import com.artyom.interfaces.Answerable;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 public class QuestionDTO implements Answerable {
-    private final Long id;
-    private final String questionText;
-    private final CategoryDTO category;
-    private final Integer difficulty;
+    private Long id;
+    private String question;
+    private CategoryDTO category;
+    private Integer difficulty;
 
-    public QuestionDTO(Long id, String questionText, CategoryDTO category, Integer difficulty) {
+    public QuestionDTO(Long id, String question, CategoryDTO category, Integer difficulty) {
         this.id = id;
-        this.questionText = questionText;
+        this.question = question;
         this.category = category;
         this.difficulty = difficulty;
     }

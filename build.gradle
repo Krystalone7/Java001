@@ -17,6 +17,8 @@ dependencies {
     annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.24'
     implementation group: 'org.postgresql', name: 'postgresql', version: '42.3.3'
     implementation group: 'org.liquibase', name: 'liquibase-core', version: '4.10.0'
+    implementation group: 'ma.glasnost.orika', name: 'orika-core', version: '1.5.4'
+
 
 }
 

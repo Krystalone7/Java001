@@ -2,12 +2,14 @@ package com.artyom.dto;
 
 import com.artyom.interfaces.Answerable;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 public class AnswerDTO implements Answerable {
-    private final Long questionId;
-    private final Boolean isCorrect;
-    private final String correctAnswer;
+    private Long questionId;
+    private Boolean isCorrect;
+    private String correctAnswer;
 
     public AnswerDTO(Long questionId, Boolean isCorrect, String correctAnswer) {
         this.questionId = questionId;
