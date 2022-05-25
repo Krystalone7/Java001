@@ -16,6 +16,8 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter:2.6.7'
     annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.24'
     implementation group: 'org.postgresql', name: 'postgresql', version: '42.3.3'
+    implementation group: 'org.liquibase', name: 'liquibase-core', version: '4.10.0'
+
 }
 
 test {

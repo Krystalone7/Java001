@@ -1,0 +1,40 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-categories
+      author: Artyom
+      changes:
+        - insert:
+            schemaName: quiz
+            tableName: categories
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: name
+                  value: Литература
+        - insert:
+            schemaName: quiz
+            tableName: categories
+            columns:
+              - column:
+                    name: id
+                    value: 2
+              - column:
+                  name: name
+                  value: Физика
+        - insert:
+            schemaName: quiz
+            tableName: categories
+            columns:
+              - column:
+                  name: id
+                  value: 3
+              - column:
+                  name: name
+                  value: Химия
+      rollback:
+        - delete:
+            tableName: categories
+            schemaName: quiz
+            where: name in ('Литература', 'Физика', 'Химия')

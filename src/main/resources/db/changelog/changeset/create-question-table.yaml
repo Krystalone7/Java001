@@ -1,0 +1,37 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-questions
+      author: Artyom
+      changes:
+        - createTable:
+            tableName: questions
+            schemaName: quiz
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: question_text
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: category_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: category_question_fk
+                    referencedTableSchemaName: quiz
+                    referencedTableName: categories
+                    referencedColumnNames: id
+              - column:
+                  name: difficulty
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: answer
+                  type: varchar(100)
