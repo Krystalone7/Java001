@@ -1,6 +1,8 @@
 package com.artyom.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -8,6 +10,8 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
+@RequiredArgsConstructor
+@AllArgsConstructor
 @Table(schema = "quiz", name = "questions")
 public class Question {
 
@@ -29,20 +33,4 @@ public class Question {
     @Column(name = "answer")
     private String answer;
 
-    public Question() {
-    }
-
-    public Question(String questionText, Integer difficulty, String answer) {
-        this.questionText = questionText;
-        this.difficulty = difficulty;
-        this.answer = answer;
-    }
-
-    public Question(Long id, String questionText, Category category, Integer difficulty, String answer) {
-        this.id = id;
-        this.questionText = questionText;
-        this.category = category;
-        this.difficulty = difficulty;
-        this.answer = answer;
-    }
 }
