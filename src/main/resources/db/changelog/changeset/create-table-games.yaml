@@ -1,0 +1,36 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-games
+      author: Artyom
+      changes:
+        - createTable:
+            tableName: games
+            schemaName: quiz
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: question_count
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: min_value
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: max_value
+                  type: int
+                  constraints:
+                    nullable: false
+
+
+
+
+

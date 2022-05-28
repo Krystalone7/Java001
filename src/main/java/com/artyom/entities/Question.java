@@ -1,17 +1,15 @@
 package com.artyom.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
 @Entity
-@RequiredArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Table(schema = "quiz", name = "questions")
 public class Question {
 
@@ -33,4 +31,14 @@ public class Question {
     @Column(name = "answer")
     private String answer;
 
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "questions")
+    private List<Game> games;
+
+    public Question(Long id, String questionText, Category category, Integer difficulty, String answer) {
+        this.id = id;
+        this.questionText = questionText;
+        this.category = category;
+        this.difficulty = difficulty;
+        this.answer = answer;
+    }
 }
