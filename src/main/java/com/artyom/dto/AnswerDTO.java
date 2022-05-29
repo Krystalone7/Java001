@@ -6,10 +6,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter
-@Setter
 @AllArgsConstructor
 public class AnswerDTO implements Answerable {
-    private Long questionId;
-    private Boolean isCorrect;
-    private String correctAnswer;
+    private final Long questionId;
+    private final Boolean isCorrect;
+    private final String correctAnswer;
 }

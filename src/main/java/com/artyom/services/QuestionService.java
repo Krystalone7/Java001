@@ -30,12 +30,7 @@ public class QuestionService {
     }
 
     public Question getQuestionById(Long id){
-        try {
-            Question question = repository.findQuestionById(id);
-        }catch (Exception e){
-            return null;
-        }
-        return repository.findQuestionById(id);
+        return repository.findQuestionById(id).orElse(null);
     }
 
     public Question saveQuestion(QuestionCreationDTO questionCreationDTO){
@@ -53,18 +48,16 @@ public class QuestionService {
     public ResponseDTO<QuestionDTO> getRandomQuestionFromDB(){
         Question question = getRandomQuestion();
         return new ResponseDTO<>("OK", "OK",
-                new QuestionDTO(question.getId()
-                        , question.getQuestionText()
-                        , new CategoryDTO(question.getCategory().getId()
-                        , question.getCategory().getName())
-                        , question.getDifficulty()));
+                new QuestionDTO(question.getId(),
+                        question.getQuestionText(),
+                        new CategoryDTO(question.getCategory().getId(),
+                        question.getCategory().getName()),
+                        question.getDifficulty()));
     }
 
     public ResponseDTO<QuestionDTO> getRandomQuestionFromApi(){
         try {
-            List<QuestionCreationDTO> questions = client.getQuestionFromApi();
-            QuestionCreationDTO questionCreationDTO = questions.get(0);
-            Question question = saveQuestion(questionCreationDTO);
+            Question question = saveQuestion(client.getQuestionFromApi().get(0));
             return new ResponseDTO<>("OK", "OK",
                     new QuestionDTO(
                             question.getId(),
@@ -81,15 +74,15 @@ public class QuestionService {
         try {
             question = getQuestionById(creationDTO.getQuestionId());
             if (question.getAnswer().equals(creationDTO.getAnswer())) {
-                return new ResponseDTO<>("OK", "OK"
-                        , new AnswerDTO(creationDTO.getQuestionId()
-                        , true
-                        , question.getAnswer()));
+                return new ResponseDTO<>("OK", "OK",
+                        new AnswerDTO(creationDTO.getQuestionId(),
+                                true,
+                                question.getAnswer()));
             } else {
-                return new ResponseDTO<>("OK", "OK"
-                        , new AnswerDTO(creationDTO.getQuestionId()
-                        , false
-                        , question.getAnswer()));
+                return new ResponseDTO<>("OK", "OK",
+                        new AnswerDTO(creationDTO.getQuestionId(),
+                                false,
+                                question.getAnswer()));
             }
         } catch (NullPointerException e){
             return new ResponseDTO<>("ERROR", "Question with questionId: " + creationDTO.getQuestionId().toString() + " doesnt exist", null);

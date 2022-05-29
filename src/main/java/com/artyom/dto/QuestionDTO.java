@@ -6,11 +6,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter
-@Setter
 @AllArgsConstructor
 public class QuestionDTO implements Answerable {
-    private Long id;
-    private String question;
-    private CategoryDTO category;
-    private Integer difficulty;
+    private final Long id;
+    private final String question;
+    private final CategoryDTO category;
+    private final Integer difficulty;
 }

@@ -6,13 +6,12 @@ import lombok.*;
 import java.io.Serializable;
 
 @Getter
-@Setter
 @AllArgsConstructor
-@NoArgsConstructor
 public class QuestionCreationDTO implements Answerable, Serializable {
-    private Long id;
-    private String question;
-    private Integer value;
-    private String answer;
-    private CategoryDTO category;
+    private final Long id;
+    private final String question;
+    private final Integer value;
+    private final String answer;
+    private final CategoryDTO category;
+
 }
