@@ -3,14 +3,17 @@ package com.artyom.controllers;
 import com.artyom.dto.*;
 import com.artyom.entities.Question;
 import com.artyom.services.QuestionService;
-import liquibase.pro.packaged.P;
-import liquibase.repackaged.org.apache.commons.lang3.ObjectUtils;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Optional;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 @RestController
 public class QuestionController {
@@ -21,37 +24,18 @@ public class QuestionController {
     }
 
     @GetMapping("/question/random")
-    public ResponseDto<QuestionDTO> getRandomQuestion() {
-        Question question = questionService.getRandomQuestion();
-        return new ResponseDto<>("OK", "OK",
-                new QuestionDTO(question.getId()
-                        , question.getQuestionText()
-                        , new CategoryDTO(question.getCategory().getId()
-                        , question.getCategory().getName())
-                        , question.getDifficulty()));
+    public ResponseDTO<QuestionDTO> getRandomQuestion() {
+        return questionService.getRandomQuestionFromDB();
     }
 
     @PostMapping("/question/check")
-    public ResponseDto<AnswerDTO> checkAnswer(@RequestBody AnswerCreationDTO creationDTO) {
-        Question question = null;
-        try {
-            question = questionService.getQuestionById(creationDTO.getQuestionId());
-            if (question.getAnswer().equals(creationDTO.getAnswer())) {
-                return new ResponseDto<>("OK", "OK"
-                        , new AnswerDTO(creationDTO.getQuestionId()
-                        , true
-                        , question.getAnswer()));
-            } else {
-                return new ResponseDto<>("OK", "OK"
-                        , new AnswerDTO(creationDTO.getQuestionId()
-                        , false
-                        , question.getAnswer()));
-            }
-        } catch (NullPointerException e){
-            return new ResponseDto<>("ERROR", "Question with questionId: " + creationDTO.getQuestionId().toString() + " doesnt exist", null);
-        } catch (Exception e){
-            return new ResponseDto<>("ERROR", "Error with request body", null);
-        }
+    public ResponseDTO<AnswerDTO> checkAnswer(@RequestBody AnswerCreationDTO creationDTO) {
+        return questionService.checkAnswer(creationDTO);
+    }
+
+    @GetMapping("/api/random")
+    public ResponseDTO<QuestionDTO> getRandomQuestionFromApi() {
+        return questionService.getRandomQuestionFromApi();
     }
 }
 

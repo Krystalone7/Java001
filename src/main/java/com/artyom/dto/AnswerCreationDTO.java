@@ -1,14 +1,10 @@
 package com.artyom.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
-@Setter
+@AllArgsConstructor
 public class AnswerCreationDTO {
-    private Long questionId;
-    private String answer;
-
-    public AnswerCreationDTO() {
-    }
+    private final Long questionId;
+    private final String answer;
 }

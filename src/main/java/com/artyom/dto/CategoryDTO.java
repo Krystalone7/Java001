@@ -1,14 +1,13 @@
 package com.artyom.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
+@AllArgsConstructor
 public class CategoryDTO {
     private final Long id;
-    private final String name;
-
-    public CategoryDTO(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+    private final String title;
 }
