@@ -1,10 +1,10 @@
 databaseChangeLog:
   - changeSet:
-      id: create-games
+      id: create-answers
       author: Artyom
       changes:
         - createTable:
-            tableName: games
+            tableName: answers
             schemaName: quiz
             columns:
               - column:
@@ -15,24 +15,25 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: question_count
+                  name: game_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: question_number
                   type: int
                   constraints:
                     nullable: false
               - column:
-                  name: min_value
-                  type: int
+                  name: question_id
+                  type: bigint
                   constraints:
                     nullable: false
               - column:
-                  name: max_value
-                  type: int
-                  constraints:
-                    nullable: false
-              - column:
-                  name: is_active
+                  name: is_correct
                   type: boolean
-
+                  constraints:
+                    nullable: false
 
 
 

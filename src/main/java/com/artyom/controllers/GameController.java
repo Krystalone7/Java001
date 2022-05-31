@@ -1,13 +1,11 @@
 package com.artyom.controllers;
 
-import com.artyom.dto.GameCreationDTO;
-import com.artyom.dto.GameResponseDTO;
+import com.artyom.dto.*;
 import com.artyom.repositories.GameRepository;
 import com.artyom.services.GameService;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class GameController {
@@ -20,7 +18,22 @@ public class GameController {
     }
 
     @PostMapping("/game")
-    public GameResponseDTO createGame(@RequestBody GameCreationDTO gameCreationDTO){
-        return gameService.createNewGame(gameCreationDTO);
+    public ResponseDTO<GameResponseDTO> createGame(@RequestBody GameCreationDTO gameCreationDTO){
+         return gameService.createNewGame(gameCreationDTO);
+    }
+
+    @GetMapping("/game/{gameId}/{questionNumber}")
+    public ResponseDTO<QuestionDTO> getQuestionFromGame(@PathVariable Long gameId, @PathVariable int questionNumber){
+        return gameService.getQuestionFromGame(gameId, questionNumber);
+    }
+
+    @PostMapping("/game/{gameId}/{questionNumber}/check")
+    public ResponseDTO<AnswerDTO> checkAnswerFromGame(@RequestBody AnswerGameDTO answer, @PathVariable Long gameId, @PathVariable int questionNumber){
+        return gameService.checkAnswerFromGame(gameId, questionNumber, answer);
+    }
+
+    @PostMapping("/game/{gameId}/finish")
+    public ResponseDTO<FinishGameDTO> finishGame(@PathVariable Long gameId){
+        return gameService.finishGame(gameId);
     }
 }

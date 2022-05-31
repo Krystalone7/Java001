@@ -1,15 +1,13 @@
 package com.artyom.dto;
 
-
 import com.artyom.interfaces.Answerable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import java.util.HashMap;
 
 @Getter
 @AllArgsConstructor
-public class GameResponseDTO implements Answerable {
+public class FinishGameDTO implements Answerable {
     private final Long gameId;
-    private final int questionCount;
+    private final HashMap<String, String> results;
 }

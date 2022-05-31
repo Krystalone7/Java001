@@ -5,6 +5,8 @@ import lombok.*;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Entity
@@ -28,6 +30,9 @@ public class Game {
     @Column(name = "max_value")
     private Integer maxValue;
 
+    @Column(name = "is_active")
+    private Boolean isActive;
+
     @ManyToMany
     @JoinTable(
             name = "games_questions",
@@ -41,5 +46,7 @@ public class Game {
         this.questionCount = questionCount;
         this.minValue = minValue;
         this.maxValue = maxValue;
+        isActive = true;
+        questions = new ArrayList<>();
     }
 }

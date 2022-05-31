@@ -4,7 +4,8 @@ import lombok.*;
 
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 public class AnswerCreationDTO {
-    private final Long questionId;
-    private final String answer;
+    private Long questionId;
+    private String answer;
 }

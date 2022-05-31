@@ -8,6 +8,8 @@ databaseChangeLog:
   - include:
       file: db/changelog/changeset/create-table-games_questions.yaml
   - include:
+      file: db/changelog/changeset/create-table-answers.yaml
+  - include:
       file: db/changelog/changeset/insert-categories.yaml
   - include:
       file: db/changelog/changeset/insert-questions.yaml

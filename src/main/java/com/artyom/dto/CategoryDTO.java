@@ -10,4 +10,12 @@ import lombok.Setter;
 public class CategoryDTO {
     private final Long id;
     private final String title;
+
+    @Override
+    public String toString() {
+        return "CategoryDTO{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                '}';
+    }
 }

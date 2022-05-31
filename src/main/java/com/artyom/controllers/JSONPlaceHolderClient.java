@@ -11,6 +11,6 @@ import java.util.Optional;
 public interface JSONPlaceHolderClient {
 
     @GetMapping("/random")
-    Optional<List<QuestionCreationDTO>> getQuestionFromApi();
+    List<QuestionCreationDTO> getQuestionFromApi();
 
 }
