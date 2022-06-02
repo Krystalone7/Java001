@@ -1,9 +1,7 @@
 package com.artyom.controllers;
 
 import com.artyom.dto.*;
-import com.artyom.repositories.GameRepository;
 import com.artyom.services.GameService;
-import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

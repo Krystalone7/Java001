@@ -19,6 +19,3 @@ databaseChangeLog:
                   constraints:
                     foreignKeyName: fk_question_id
                     references: quiz.questions(id)
-
-
-

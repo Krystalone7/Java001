@@ -1,17 +1,20 @@
 package com.artyom.dto;
 
 import com.artyom.interfaces.Answerable;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 public class QuestionCreationDTO implements Answerable, Serializable {
-    private final Long id;
-    private final String question;
-    private final Integer value;
-    private final String answer;
-    private final CategoryDTO category;
+    private Long id;
+    private String question;
+    private Integer value;
+    private String answer;
+    private CategoryDTO category;
 
 }

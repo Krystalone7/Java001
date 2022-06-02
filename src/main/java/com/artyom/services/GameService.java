@@ -18,12 +18,10 @@ import java.util.List;
 @Slf4j
 @Service
 public class GameService {
-
     private final GameRepository gameRepository;
     private final QuestionRepository questionRepository;
     private final QuestionService questionService;
     private final AnswerRepository answerRepository;
-
     @Autowired
     public GameService(GameRepository gameRepository, QuestionRepository questionRepository, QuestionService questionService, AnswerRepository answerRepository) {
         this.gameRepository = gameRepository;
@@ -31,7 +29,6 @@ public class GameService {
         this.questionService = questionService;
         this.answerRepository = answerRepository;
     }
-
     public ResponseDTO<GameResponseDTO> createNewGame(GameCreationDTO gameCreationDTO){
         Game game = gameRepository.save(new Game(
                 gameCreationDTO.getQuestionCount(),
@@ -50,7 +47,6 @@ public class GameService {
                 new GameResponseDTO(game.getId(), game.getQuestionCount())
         );
     }
-
     public ResponseDTO<QuestionDTO> getQuestionFromGame(Long gameId, int questionNumber) {
         questionNumber--;
         Game game = gameRepository.findById(gameId).orElse(null);
@@ -69,7 +65,6 @@ public class GameService {
         }
         return new ResponseDTO<>("Error", " Cannot find active game with id " + gameId, null);
     }
-
     public ResponseDTO<AnswerDTO> checkAnswerFromGame(Long gameId, int questionNumber, AnswerGameDTO answer) {
         questionNumber--;
         Game game = gameRepository.findById(gameId).orElse(null);
@@ -88,7 +83,6 @@ public class GameService {
         }
         return new ResponseDTO<>("Error", " Cannot find active game with id " + gameId, null);
     }
-
     public ResponseDTO<FinishGameDTO> finishGame(Long id){
         Game game = gameRepository.findById(id).orElse(null);
         if (game == null){
@@ -111,6 +105,4 @@ public class GameService {
         }
         return new ResponseDTO<>("OK", "OK", new FinishGameDTO(game.getId(), results));
     }
-
 }
-

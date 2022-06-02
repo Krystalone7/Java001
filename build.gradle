@@ -13,6 +13,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.6.7'
     implementation 'org.springframework.boot:spring-boot-starter-web:2.6.7'
     implementation 'org.projectlombok:lombok:1.18.24'
+    implementation 'org.junit.jupiter:junit-jupiter:5.7.0'
     testImplementation 'org.springframework.boot:spring-boot-starter:2.6.7'
     annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.24'
     implementation group: 'org.postgresql', name: 'postgresql', version: '42.3.3'
@@ -20,6 +21,8 @@ dependencies {
     implementation group: 'ma.glasnost.orika', name: 'orika-core', version: '1.5.4'
     implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter', version: '3.1.2'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-cache', version: '2.7.0'
+    testImplementation group: 'junit', name: 'junit', version: '4.13.2'
+    testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.7.0'
     implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign', version: '3.1.2'
 }
 
