@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CategoryDTO {
-    private Long id;
-    private String title;
+public class AnswerGameDTO {
+    private String answer;
 }

@@ -1,7 +1,6 @@
 package com.artyom.entities;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -9,6 +8,8 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "categories", schema = "quiz")
 public class Category {
 
@@ -23,15 +24,8 @@ public class Category {
     @OneToMany(mappedBy = "category")
     private List<Question> questions;
 
-    public Category(String name) {
-        this.name = name;
-    }
-
     public Category(Long id, String name) {
         this.id = id;
         this.name = name;
-    }
-
-    public Category() {
     }
 }

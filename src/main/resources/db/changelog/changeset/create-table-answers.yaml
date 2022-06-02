@@ -1,0 +1,36 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-answers
+      author: Artyom
+      changes:
+        - createTable:
+            tableName: answers
+            schemaName: quiz
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: game_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: question_number
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: question_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: is_correct
+                  type: boolean
+                  constraints:
+                    nullable: false

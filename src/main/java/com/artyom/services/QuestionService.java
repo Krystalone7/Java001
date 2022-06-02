@@ -9,30 +9,23 @@ import com.artyom.repositories.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityManager;
-import java.util.*;
-
 @Service
 public class QuestionService {
     private final QuestionRepository repository;
     private final CategoryRepository categoryRepository;
     private final JSONPlaceHolderClient client;
-
     @Autowired
-    public QuestionService(QuestionRepository repository, CategoryRepository categoryRepository, JSONPlaceHolderClient client, EntityManager entityManager) {
+    public QuestionService(QuestionRepository repository, CategoryRepository categoryRepository, JSONPlaceHolderClient client) {
         this.repository = repository;
         this.categoryRepository = categoryRepository;
         this.client = client;
     }
-
     public Question getRandomQuestion(){
         return repository.getRandom();
     }
-
     public Question getQuestionById(Long id){
         return repository.findQuestionById(id).orElse(null);
     }
-
     public Question saveQuestion(QuestionCreationDTO questionCreationDTO){
         Category category =  categoryRepository.saveAndFlush(new Category(questionCreationDTO.getCategory().getId(), questionCreationDTO.getCategory().getTitle()));
         Question question = new Question(
@@ -40,11 +33,11 @@ public class QuestionService {
                 questionCreationDTO.getQuestion(),
                 category,
                 questionCreationDTO.getValue(),
-                questionCreationDTO.getAnswer()
+                questionCreationDTO.getAnswer(),
+                null
         );
         return repository.saveAndFlush(question);
     }
-
     public ResponseDTO<QuestionDTO> getRandomQuestionFromDB(){
         Question question = getRandomQuestion();
         return new ResponseDTO<>("OK", "OK",
@@ -54,7 +47,6 @@ public class QuestionService {
                         question.getCategory().getName()),
                         question.getDifficulty()));
     }
-
     public ResponseDTO<QuestionDTO> getRandomQuestionFromApi(){
         try {
             Question question = saveQuestion(client.getQuestionFromApi().get(0));
@@ -68,7 +60,6 @@ public class QuestionService {
             return new ResponseDTO<>("ERROR", "Error with Api", null);
         }
     }
-
     public ResponseDTO<AnswerDTO> checkAnswer(AnswerCreationDTO creationDTO){
         Question question;
         try {

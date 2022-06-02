@@ -2,19 +2,18 @@ package com.artyom.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
 @Entity
-@RequiredArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Table(schema = "quiz", name = "questions")
 public class Question {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -33,4 +32,6 @@ public class Question {
     @Column(name = "answer")
     private String answer;
 
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "questions")
+    private List<Game> games;
 }

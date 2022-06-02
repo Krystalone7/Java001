@@ -3,7 +3,6 @@ package com.artyom.dto;
 import com.artyom.interfaces.Answerable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
 @AllArgsConstructor

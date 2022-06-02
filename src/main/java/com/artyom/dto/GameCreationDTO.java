@@ -7,7 +7,8 @@ import lombok.NoArgsConstructor;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CategoryDTO {
-    private Long id;
-    private String title;
+public class GameCreationDTO {
+    private Integer questionCount;
+    private Integer minValue;
+    private Integer maxValue;
 }

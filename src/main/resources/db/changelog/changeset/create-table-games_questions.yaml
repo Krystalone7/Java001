@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-games_questions
+      author: Artyom
+      changes:
+        - createTable:
+            tableName: games_questions
+            schemaName: quiz
+            columns:
+              - column:
+                  name: game_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_game_id
+                    references: quiz.games(id)
+              - column:
+                  name: question_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_question_id
+                    references: quiz.questions(id)
