@@ -105,4 +105,11 @@ public class GameService {
         }
         return new ResponseDTO<>("OK", "OK", new FinishGameDTO(game.getId(), results));
     }
+    public void deleteGameById(Long gameId) {
+        Game game = gameRepository.findById(gameId).orElse(null);
+        assert game != null;
+        game.getQuestions().clear();
+        gameRepository.save(game);
+        gameRepository.deleteById(gameId);
+    }
 }

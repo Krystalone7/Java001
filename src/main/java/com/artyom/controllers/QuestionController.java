@@ -2,10 +2,7 @@ package com.artyom.controllers;
 
 import com.artyom.dto.*;
 import com.artyom.services.QuestionService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class QuestionController {

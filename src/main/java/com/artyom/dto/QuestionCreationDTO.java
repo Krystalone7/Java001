@@ -16,5 +16,4 @@ public class QuestionCreationDTO implements Answerable, Serializable {
     private Integer value;
     private String answer;
     private CategoryDTO category;
-
 }

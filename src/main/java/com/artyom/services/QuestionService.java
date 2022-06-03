@@ -81,4 +81,7 @@ public class QuestionService {
             return new ResponseDTO<>("ERROR", "Error with request body", null);
         }
     }
+    public void deleteQuestionById(Long id){
+        repository.deleteById(id);
+    }
 }
