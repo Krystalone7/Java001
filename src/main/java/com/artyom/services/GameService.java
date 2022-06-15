@@ -7,7 +7,6 @@ import com.artyom.entities.Question;
 import com.artyom.repositories.AnswerRepository;
 import com.artyom.repositories.GameRepository;
 import com.artyom.repositories.QuestionRepository;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +14,6 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-@Slf4j
 @Service
 public class GameService {
     private final GameRepository gameRepository;
@@ -104,12 +102,5 @@ public class GameService {
             );
         }
         return new ResponseDTO<>("OK", "OK", new FinishGameDTO(game.getId(), results));
-    }
-    public void deleteGameById(Long gameId) {
-        Game game = gameRepository.findById(gameId).orElse(null);
-        assert game != null;
-        game.getQuestions().clear();
-        gameRepository.save(game);
-        gameRepository.deleteById(gameId);
     }
 }

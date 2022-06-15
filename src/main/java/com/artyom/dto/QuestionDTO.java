@@ -11,14 +11,4 @@ public class QuestionDTO implements Answerable {
     private final String question;
     private final CategoryDTO category;
     private final Integer difficulty;
-
-    @Override
-    public String toString() {
-        return "Question{" +
-                "id=" + id +
-                ", question='" + question + '\'' +
-                ", category=" + category +
-                ", difficulty=" + difficulty +
-                '}';
-    }
 }

@@ -1,13 +1,22 @@
 package com.artyom.dto;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
-@AllArgsConstructor
-@NoArgsConstructor
 public class CategoryDTO {
-    private Long id;
-    private String title;
+    private final Long id;
+    private final String title;
+
+    @JsonCreator
+    public CategoryDTO(
+            @JsonProperty("id") Long id,
+            @JsonProperty("title") String title
+    ){
+        this.id = id;
+        this.title = title;
+    }
 }
