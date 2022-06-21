@@ -33,7 +33,7 @@ public class Game {
     @Column(name = "is_active")
     private Boolean isActive;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinTable(
             name = "games_questions",
             schema = "quiz",

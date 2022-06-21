@@ -32,6 +32,6 @@ public class Question {
     @Column(name = "answer")
     private String answer;
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "questions")
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "questions", fetch = FetchType.EAGER)
     private List<Game> games;
 }

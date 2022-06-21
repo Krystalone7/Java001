@@ -60,7 +60,7 @@ public class QuestionService {
             return new ResponseDTO<>("ERROR", "Error with Api", null);
         }
     }
-    public ResponseDTO<AnswerDTO> checkAnswer(AnswerCreationDTO creationDTO){
+    public ResponseDTO<AnswerDTO> checkAnswer(AnswerCreationDTO creationDTO) {
         Question question;
         try {
             question = getQuestionById(creationDTO.getQuestionId());
@@ -75,9 +75,9 @@ public class QuestionService {
                                 false,
                                 question.getAnswer()));
             }
-        } catch (NullPointerException e){
+        } catch (NullPointerException e) {
             return new ResponseDTO<>("ERROR", "Question with questionId: " + creationDTO.getQuestionId().toString() + " doesnt exist", null);
-        } catch (Exception e){
+        } catch (Exception e) {
             return new ResponseDTO<>("ERROR", "Error with request body", null);
         }
     }
