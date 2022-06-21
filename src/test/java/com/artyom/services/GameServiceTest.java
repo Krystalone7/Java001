@@ -16,13 +16,12 @@ import com.artyom.repositories.AnswerRepository;
 import com.artyom.repositories.GameRepository;
 import com.artyom.repositories.QuestionRepository;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
@@ -32,7 +31,7 @@ import java.util.Optional;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-@SpringBootTest
+@ExtendWith(MockitoExtension.class)
 @RunWith(SpringRunner.class)
 public class GameServiceTest {
     @Mock
@@ -43,12 +42,8 @@ public class GameServiceTest {
     private AnswerRepository answerRepository;
     @Mock
     private QuestionService questionService;
-
-    @BeforeEach
-    public void setUp(){
-        MockitoAnnotations.openMocks(this);
-        gameService = new GameService(gameRepository, questionRepository, questionService, answerRepository);
-    }
+    @InjectMocks
+    private GameService gameService;
 
     @Test
     public void createGameTest(){
