@@ -1,6 +1,13 @@
 package com.artyom.services;
 
-import com.artyom.dto.*;
+import com.artyom.dto.AnswerCreationDTO;
+import com.artyom.dto.AnswerDTO;
+import com.artyom.dto.AnswerGameDTO;
+import com.artyom.dto.FinishGameDTO;
+import com.artyom.dto.GameCreationDTO;
+import com.artyom.dto.GameResponseDTO;
+import com.artyom.dto.QuestionDTO;
+import com.artyom.dto.ResponseDTO;
 import com.artyom.entities.Answer;
 import com.artyom.entities.Category;
 import com.artyom.entities.Game;
@@ -28,8 +35,6 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class GameServiceTest {
-    @InjectMocks
-    private GameService gameService;
     @Mock
     private GameRepository gameRepository;
     @Mock
@@ -84,7 +89,6 @@ public class GameServiceTest {
                 )
         );
         Assertions.assertEquals(2, responseDTO.getResult().getQuestionCount());
-        System.out.println(responseDTO.getResult().getGameId());
     }
 
     @Test

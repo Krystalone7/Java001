@@ -23,11 +23,8 @@ import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
 class QuestionServiceTest {
 
-    @InjectMocks
-    private QuestionService questionService;
     @Mock
     private QuestionRepository questionRepository;
     @Mock
@@ -73,7 +70,7 @@ class QuestionServiceTest {
                 null
         );
         when(questionRepository.findQuestionById(anyLong())).thenReturn(java.util.Optional.of(question));
-        Question testQuestion = questionService.getQuestionById(1L);
+        Question testQuestion = questionService.getQuestionById(1L).orElse(null);
         Assertions.assertInstanceOf(Question.class, testQuestion);
     }
 
